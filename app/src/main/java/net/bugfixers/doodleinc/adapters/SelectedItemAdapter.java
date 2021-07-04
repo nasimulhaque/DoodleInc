@@ -11,15 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.bugfixers.doodleinc.R;
+import net.bugfixers.doodleinc.activities.MainActivity;
+import net.bugfixers.doodleinc.model.SelectedItem;
+import net.bugfixers.doodleinc.util.Constants;
 
 import java.util.ArrayList;
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class SelectedItemAdapter extends RecyclerView.Adapter<SelectedItemAdapter.ViewHolder> {
 
     private final Context context;
-    private final ArrayList<String> list;
+    private final ArrayList<SelectedItem> list;
 
-    public MainAdapter(Context context, ArrayList<String> list) {
+    public SelectedItemAdapter(Context context, ArrayList<SelectedItem> list) {
         this.context = context;
         this.list = list;
     }
@@ -31,10 +34,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
-        holder.text.setText(list.get(position));
+    public void onBindViewHolder(@NonNull SelectedItemAdapter.ViewHolder holder, int position) {
+        holder.text.setText(list.get(position).getName());
         holder.imageClose.setOnClickListener(v -> {
-
+            System.out.println("Category: " + list.get(position).getCategory() + ", Subcategory: " + list.get(position).getSubcategory());
+            if (list.get(position).getSubcategory() == -1) {
+                Constants.categories.get(list.get(position).getCategory()).setSelected(false);
+            } else {
+                Constants.categories.get(list.get(position).getCategory()).getSubcatg().get(list.get(position).getSubcategory()).setSelected(false);
+            }
+            ((MainActivity) context).updateData();
         });
     }
 

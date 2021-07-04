@@ -12,7 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import net.bugfixers.doodleinc.R;
-import net.bugfixers.doodleinc.adapters.MainAdapter;
+import net.bugfixers.doodleinc.adapters.SelectedItemAdapter;
+import net.bugfixers.doodleinc.model.SelectedItem;
 import net.bugfixers.doodleinc.util.Constants;
 
 import java.util.ArrayList;
@@ -35,31 +36,35 @@ public class MainActivity extends AppCompatActivity {
         buttonBrowseCategory.setOnClickListener(v -> startActivity(new Intent(this, CategoryActivity.class)));
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        ArrayList<String> list = new ArrayList<>();
-
+    public void updateData() {
+        ArrayList<SelectedItem> list = new ArrayList<>();
         textTitle.setVisibility(View.GONE);
         if (Constants.categories != null && Constants.categories.size() != 0) {
-
-            Constants.categories.forEach((i) -> {
-                if (i.isSelected()) {
-                    list.add(i.getCategory_name());
+            for (int i = 0; i < Constants.categories.size(); i++) {
+                if (Constants.categories.get(i).isSelected()) {
+                    list.add(new SelectedItem(Constants.categories.get(i).getCategory_name(), i, -1));
                 }
-                i.getSubcatg().forEach((i2) -> {
-                    if (i2.isSelected()) {
-                        list.add(i2.getSub_category_name());
+                for (int i1 = 0; i1 < Constants.categories.get(i).getSubcatg().size(); i1++) {
+                    if (Constants.categories.get(i).getSubcatg().get(i1).isSelected()) {
+                        list.add(new SelectedItem(Constants.categories.get(i).getSubcatg().get(i1).getSub_category_name(), i, i1));
                     }
-                });
-            });
+                }
+            }
+
             if (list.size() > 0) {
                 textTitle.setVisibility(View.VISIBLE);
             }
-            MainAdapter adapter = new MainAdapter(this, list);
+            SelectedItemAdapter adapter = new SelectedItemAdapter(this, list);
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
             recyclerView.setAdapter(adapter);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        updateData();
     }
 }

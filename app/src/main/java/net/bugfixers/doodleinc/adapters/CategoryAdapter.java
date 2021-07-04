@@ -35,6 +35,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context));
         holder.recyclerView.setAdapter(adapter);
 
+        if (Constants.categories.get(position).isExpanded()) {
+            holder.recyclerView.setVisibility(View.VISIBLE);
+            holder.imageArrow.setRotation(90);
+        } else {
+            holder.recyclerView.setVisibility(View.GONE);
+            holder.imageArrow.setRotation(0);
+        }
+
         holder.imageArrow.setOnClickListener(v -> {
             if (Constants.categories.get(position).isExpanded()) {
                 holder.recyclerView.setVisibility(View.GONE);
