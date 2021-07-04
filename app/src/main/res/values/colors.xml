@@ -18,6 +18,7 @@
     <color name="black">#000000</color>
     <color name="color_shadow">#888888</color>
     <color name="color_light_shadow">#CCCCCC</color>
+    <color name="color_light_blue">#B7D8F1</color>
     <color name="text_input_color">#cc3300</color>
     <color name="mtrl_textinput_default_box_stroke_color">#888888</color>
 </resources>

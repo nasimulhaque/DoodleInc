@@ -40,19 +40,23 @@ public class SubcategoryAdapter extends RecyclerView.Adapter<SubcategoryAdapter.
 
         if (Constants.categories.get(index).getSubcatg().get(position).isSelected()) {
             holder.imageAdd.setImageResource(R.drawable.ic_baseline_done_24);
+            holder.imageAdd.setBackgroundResource(R.drawable.bg_added);
         } else {
             holder.imageAdd.setImageResource(R.drawable.ic_baseline_add_24);
+            holder.imageAdd.setBackgroundResource(R.drawable.bg_add);
         }
 
         holder.imageAdd.setOnClickListener(v -> {
             if (Constants.categories.get(index).getSubcatg().get(position).isSelected()) {
                 Constants.categories.get(index).getSubcatg().get(position).setSelected(false);
                 holder.imageAdd.setImageResource(R.drawable.ic_baseline_add_24);
+                holder.imageAdd.setBackgroundResource(R.drawable.bg_add);
                 Constants.categories.get(index).setSelected(false);
                 ((CategoryActivity) context).update();
             } else {
                 Constants.categories.get(index).getSubcatg().get(position).setSelected(true);
                 holder.imageAdd.setImageResource(R.drawable.ic_baseline_done_24);
+                holder.imageAdd.setBackgroundResource(R.drawable.bg_added);
             }
         });
     }

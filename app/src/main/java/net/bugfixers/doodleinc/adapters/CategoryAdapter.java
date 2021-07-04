@@ -59,8 +59,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         if (Constants.categories.get(position).isSelected()) {
             holder.imageAdd.setImageResource(R.drawable.ic_baseline_done_24);
+            holder.imageAdd.setBackgroundResource(R.drawable.bg_added);
         } else {
             holder.imageAdd.setImageResource(R.drawable.ic_baseline_add_24);
+            holder.imageAdd.setBackgroundResource(R.drawable.bg_add);
         }
 
         holder.imageAdd.setOnClickListener(v -> {
@@ -69,11 +71,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 adapter.notifyDataSetChanged();
                 Constants.categories.get(position).setSelected(false);
                 holder.imageAdd.setImageResource(R.drawable.ic_baseline_add_24);
+                holder.imageAdd.setBackgroundResource(R.drawable.bg_add);
             } else {
                 Constants.categories.get(position).getSubcatg().forEach((i) -> i.setSelected(true));
                 adapter.notifyDataSetChanged();
                 Constants.categories.get(position).setSelected(true);
                 holder.imageAdd.setImageResource(R.drawable.ic_baseline_done_24);
+                holder.imageAdd.setBackgroundResource(R.drawable.bg_added);
             }
         });
     }
