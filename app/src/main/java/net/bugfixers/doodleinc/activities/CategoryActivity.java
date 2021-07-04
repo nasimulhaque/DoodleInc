@@ -7,10 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,9 +61,7 @@ public class CategoryActivity extends AppCompatActivity {
         clearAll.setOnClickListener(v -> {
             Constants.categories.forEach((i) -> {
                 i.setSelected(false);
-                i.getSubcatg().forEach((i2) -> {
-                    i2.setSelected(false);
-                });
+                i.getSubcatg().forEach((i2) -> i2.setSelected(false));
             });
 
             adapter.notifyDataSetChanged();
@@ -74,6 +71,10 @@ public class CategoryActivity extends AppCompatActivity {
             Log.d(TAG, "Fetching");
             fetch();
         }
+
+        TextView textView = findViewById(R.id.text_let);
+        String text = "<font color=#000000>Missing a category?</font> <font color=#005797>Let us know</font>";
+        textView.setText(Html.fromHtml(text, 0));
     }
 
     private void fetch() {
