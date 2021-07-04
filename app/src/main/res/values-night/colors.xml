@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#4d4d4d</color>
+    <color name="primary_variant">#3c3c3c</color>
+    <color name="secondary">#1e1e1e</color>
+    <color name="secondary_variant">#111111</color>
+
+    <color name="text_color1">#FFFFFF</color>
+    <color name="text_color2">#E8E3E3</color>
+    <color name="text_color3">#000000</color>
+    <color name="hint_text_color">#888888</color>
+    <color name="background">#000000</color>
+    <color name="item_background">#4d4d4d</color>
+    <color name="icon_color">#FFFFFF</color>
+    <color name="search_background">#FFFFFF</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="color_shadow">#888888</color>
+    <color name="color_light_shadow">#CCCCCC</color>
+    <color name="text_input_color">#FFFFFF</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#888888</color>
+</resources>
